@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改音乐信息</title>
+    <link rel="stylesheet" th:href="@{/css/musicUpdate.css}">
+</head>
+<body>
+<h2>修改音乐信息</h2>
+
+<form action="/MusicUpdate" method="post">
+    <!-- Form fields for other properties -->
+    <input type="hidden" name="ID" th:value="${musicInfo.ID}">
+    <label for="title">音乐名称</label>
+    <input type="text" id="title" name="title" th:value="${musicInfo.title}"/><br/>
+
+    <label for="artist">作者</label>
+    <input type="text" id="artist" name="artist" th:value="${musicInfo.artist}"/><br/>
+
+    <label for="album">专辑</label>
+    <input type="text" id="album" name="album" th:value="${musicInfo.album}"/><br/>
+
+    <!-- Add more input fields for other properties -->
+    <button type="submit">提交修改</button>
+</form>
+</body>
+</html>

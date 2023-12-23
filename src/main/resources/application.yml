@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    name: mysql80
+    url: jdbc:mysql://192.168.47.128:3306/lab8-music
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+  servlet:
+    multipart:
+      max-file-size: 20MB
+# mybatis??
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com/example/lab8music/entity
+
+
+

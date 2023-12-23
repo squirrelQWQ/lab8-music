@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.lab8music.mapper.MusicInfoMapper">
+    <select id="getAllMusic" resultType="com.example.lab8music.entity.MusicInfo">
+        select * from musicInfo;
+    </select>
+    <delete id="deleteMusicById">
+        delete from musicInfo where id = #{ID}
+    </delete>
+    <select id="getMusicById" resultType="com.example.lab8music.entity.MusicInfo">
+        select * from musicInfo where id = #{ID}
+    </select>
+    <update id="updateMusicById">
+        update musicInfo set title = #{title}, artist = #{artist}, album = #{album}, sort = #{sort}, status = #{status}, gmt_created = #{gmt_created}, link_status = #{link_status}, gmt_modified = #{gmt_modified} where id = #{ID}
+    </update>
+    <insert id="uploadMusic">
+        insert into musicInfo (title, artist, album, sort, status, gmt_created, link_status, gmt_modified) values (#{title}, #{artist}, #{album}, #{sort}, #{status}, #{gmt_created}, #{link_status}, #{gmt_modified})
+    </insert>
+    <select id="getMusicByTitle" resultType="com.example.lab8music.entity.MusicInfo">
+        select * from musicInfo where title like '%${title}%'
+    </select>
+    <insert id="addMusicInfo" parameterType="com.example.lab8music.entity.MusicInfo">
+        insert into musicInfo (title, artist, album, sort, status, gmt_created, link_status, gmt_modified, music_data_id) values (#{title}, #{artist}, #{album}, #{sort}, #{status}, #{gmt_created}, #{link_status}, #{gmt_modified} ,#{music_data_id})
+    </insert>
+</mapper>

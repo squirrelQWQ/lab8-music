@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Info Management</title>
+    <link rel="stylesheet" th:href="@{/css/musicList.css}">
+</head>
+<body>
+
+<h2>音乐管理</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Sort</th>
+        <th>Status</th>
+        <th>Created Time</th>
+        <th>Modified Time</th>
+        <th>Link Status</th>
+        <th>Music Data ID</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over musicInfoList -->
+    <tr th:each="musicInfo : ${musicInfoList}">
+        <td th:text="${musicInfo.ID}"></td>
+        <td th:text="${musicInfo.title}"></td>
+        <td th:text="${musicInfo.artist}"></td>
+        <td th:text="${musicInfo.album}"></td>
+        <td th:text="${musicInfo.sort}"></td>
+        <td th:text="${musicInfo.status}"></td>
+        <td th:text="${musicInfo.gmt_created}"></td>
+        <td th:text="${musicInfo.gmt_modified}"></td>
+        <td th:text="${musicInfo.link_status}"></td>
+        <td th:text="${musicInfo.music_data_id}"></td>
+        <td>
+            <!-- Delete button -->
+            <form th:action="@{/MusicDelete}" th:method="post">
+                <input type="hidden" name="id" th:value="${musicInfo.ID}" />
+                <input type="hidden" name="title" th:value="${musicInfo.title}" />
+                <button type="submit">删除</button>
+            </form>
+        </td>
+        <td>
+            <a th:href="@{/MusicEdit/{ID}(ID=${musicInfo.ID})}">修改</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Add new musicInfo button -->
+<a th:href="@{/jump/toMusicUpload}" style="display: block; margin-top: 20px;">上传新音乐</a>
+
+</body>
+</html>
+
+
+
+
+

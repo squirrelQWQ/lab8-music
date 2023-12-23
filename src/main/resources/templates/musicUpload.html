@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>上传音乐文件</title>
+    <link rel="stylesheet" th:href="@{/css/musicUpload.css}">
+<!--    <link rel="stylesheet" th:href="@{/css/test.css}">-->
+    <script th:src="@{/js/musicUpload.js}"></script>
+</head>
+<body>
+
+<form action="/MusicUpload" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+    <h2>上传文件</h2>
+    <div id="drop-area" ondragover="handleDragOver(event);" ondragleave="handleDragLeave(event);" ondrop="handleDrop(event);" onclick="openFileInput();">
+        <p>拖拽文件到此框或者点击此框选择文件</p>
+        <p>仅支持mp3文件</p>
+        <p>不超过20MB</p>
+        <input type="file" id="file-input" name="file" accept=".mp3, .wav" onchange="handleFileSelect(event)">
+        <div id="file-name"></div>
+    </div>
+    <label for="title">音乐名称</label>
+    <input type="text" id="title" name="title" /><br/>
+
+    <label for="artist">作者</label>
+    <input type="text" id="artist" name="artist" /><br/>
+
+    <button type="submit">确认上传</button>
+</form>
+
+</body>
+</html>
+
+
