@@ -20,8 +20,8 @@
     <button type="submit">查询</button>
 </form>
 
-<!--查询所有歌曲信息-->
-<form th:action="@{/MusicSearchAll}" method="get" class="getAll">
+<!--查询所有歌曲信息，默认先查询第一页数据-->
+<form th:action="@{/searchPaginated/0}" method="get" class="getAll">
     <button type="submit">查询所有</button>
 </form>
 

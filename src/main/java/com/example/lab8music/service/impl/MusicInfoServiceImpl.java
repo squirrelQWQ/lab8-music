@@ -4,6 +4,7 @@ import com.example.lab8music.entity.MusicInfo;
 import com.example.lab8music.mapper.MusicInfoMapper;
 import com.example.lab8music.service.MusicInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,5 +43,16 @@ public class MusicInfoServiceImpl implements MusicInfoService {
     public boolean addMusicInfo(MusicInfo musicInfo) {
         return musicInfoMapper.addMusicInfo(musicInfo) > 0;
     }
+
+    @Override
+    public List<MusicInfo> getPaginatedData(int start, int size) {
+        return musicInfoMapper.getPaginatedData(start, size);
+    }
+
+    @Override
+    public int getMusicInfoCount() {
+        return musicInfoMapper.getMusicInfoCount();
+    }
+
 
 }

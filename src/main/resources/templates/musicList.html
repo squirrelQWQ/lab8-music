@@ -56,6 +56,24 @@
 <!-- Add new musicInfo button -->
 <a th:href="@{/jump/toMusicUpload}" style="display: block; margin-top: 20px;">上传新音乐</a>
 
+<!--分页的组件-->
+<div th:if="${totalPages > 1}" class="Paginated">
+    <ul class="pagination">
+        <!--跳转到上一页-->
+        <li th:disabled="${currentPage <= 0}" class="page-item">
+            <a th:href="@{/searchPaginated/{page}(page=${currentPage} - 1)}" class="page-link">上一页</a>
+        </li>
+        <!--高亮显示当前页码-->
+        <li class="page-item">
+            <a th:text="${currentPage}" class="page-num"></a>
+        </li>
+        <!--跳转到下一页-->
+        <li th:disabled="${currentPage} >= ${totalPages}-1" class="page-item">
+            <a th:href="@{/searchPaginated/{page}(page=${currentPage} + 1)}" class="page-link">下一页</a>
+        </li>
+    </ul>
+</div>
+
 </body>
 </html>
 

@@ -66,3 +66,38 @@ a {
 a:hover {
     background-color: #0077A3;
 }
+
+/*页面底部的分页按钮*************************************************************/
+.Paginated {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    margin-right: 10px; /* 调整每个页码之间的间距 */
+    display: inline-block;
+    list-style: none;
+}
+
+.page-link {
+    text-decoration: none;
+    color: #007BFF;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.page-item .page-link {
+    background-color: #007BFF;
+    color: #fff;
+    border: 1px solid #007BFF;
+}
+

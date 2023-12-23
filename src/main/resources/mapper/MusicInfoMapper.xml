@@ -25,4 +25,14 @@
     <insert id="addMusicInfo" parameterType="com.example.lab8music.entity.MusicInfo">
         insert into musicInfo (title, artist, album, sort, status, gmt_created, link_status, gmt_modified, music_data_id) values (#{title}, #{artist}, #{album}, #{sort}, #{status}, #{gmt_created}, #{link_status}, #{gmt_modified} ,#{music_data_id})
     </insert>
+
+<!--    分页查询，跳过start条信息，查询size条内容-->
+    <select id="getPaginatedData" resultType="com.example.lab8music.entity.MusicInfo">
+        select * from musicInfo limit #{start}, #{size}
+    </select>
+<!--    查询数据库中musicInfo的记录个数-->
+    <select id="getMusicInfoCount" resultType="int">
+        SELECT COUNT(*) FROM musicInfo
+    </select>
+
 </mapper>
