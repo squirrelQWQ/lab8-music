@@ -12,4 +12,5 @@ public interface MusicDataMapper {
     public int uploadMusic(MusicData musicData);
 
     List<MusicData> getRandomMusicList(long length);
+    int deleteMusicDataById(Long ID);
 }

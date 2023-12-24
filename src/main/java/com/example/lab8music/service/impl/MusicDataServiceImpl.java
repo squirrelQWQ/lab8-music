@@ -25,4 +25,9 @@ public class MusicDataServiceImpl implements MusicDataService {
 
         return musicDataMapper.getRandomMusicList(length);
     }
+
+    @Override
+    public Boolean deleteMusicDataById(Long musicDataId) {
+        return musicDataMapper.deleteMusicDataById(musicDataId) > 0;
+    }
 }

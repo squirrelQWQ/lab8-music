@@ -1,6 +1,7 @@
 package com.example.lab8music.controller;
 
 import com.example.lab8music.entity.MusicInfo;
+import com.example.lab8music.service.MusicDataService;
 import com.example.lab8music.service.MusicInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import java.util.List;
 public class MusicController {
     @Autowired
     private MusicInfoService musicInfoService;
+    @Autowired
+    private MusicDataService musicDataService;
 
 
 //    按照歌名搜索
@@ -58,7 +61,10 @@ public class MusicController {
     @PostMapping("/MusicDelete")
     public String deleteMusicInfo(@RequestParam Long id,
                                   @RequestParam String title,
+                                  @RequestParam Long music_data_id,
                                   Model model) {
+//        此处删除也应该使用事务
+        musicDataService.deleteMusicDataById(music_data_id);
         if (musicInfoService.deleteMusicById(id)) {
             model.addAttribute("DeleteResult","音乐: 《"+ title+"》 删除成功！");
         } else {

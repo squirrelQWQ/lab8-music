@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<h2>音乐管理</h2>
 
+<h2>音乐管理</h2>
 <table>
     <thead>
     <tr>
@@ -43,6 +43,7 @@
             <form th:action="@{/MusicDelete}" th:method="post">
                 <input type="hidden" name="id" th:value="${musicInfo.ID}" />
                 <input type="hidden" name="title" th:value="${musicInfo.title}" />
+                <input type="hidden" name="music_data_id" th:value="${musicInfo.music_data_id}" />
                 <button type="submit">删除</button>
             </form>
         </td>

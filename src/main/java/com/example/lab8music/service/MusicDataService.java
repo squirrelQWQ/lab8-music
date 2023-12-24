@@ -10,4 +10,6 @@ public interface MusicDataService {
     boolean uploadMusic(MusicData musicData);
 
     List<MusicData> getRandomMusicList(long length);
+
+    Boolean deleteMusicDataById(Long musicDataId);
 }

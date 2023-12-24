@@ -14,4 +14,7 @@
     <select id="getRandomMusicList" resultType="com.example.lab8music.entity.MusicData">
         select * from musicData order by rand() limit #{length}
     </select>
+    <delete id="deleteMusicDataById" parameterType="java.lang.Long">
+        delete from musicData where ID = #{ID}
+    </delete>
 </mapper>
