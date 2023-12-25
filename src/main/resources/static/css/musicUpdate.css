@@ -46,3 +46,17 @@ button {
 button:hover {
     background-color: #45a049;
 }
+
+a {
+    background-color: #008CBA;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+a :hover {
+    background-color: #0077A3;
+}

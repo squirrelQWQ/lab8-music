@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class jumpController {
     @GetMapping("/toMusicPlay")
     public String toMusicPlay() {
-
         return "musicPlay";
     }
 

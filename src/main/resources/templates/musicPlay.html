@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>音乐播放</title>
+<!--    <script th:src="@{/js/musicPlay.js}"></script>-->
     <style>
         * {
             margin: 0;
@@ -206,92 +207,6 @@
             z-index: 3;
         }
 
-        .think {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-            border-radius: 50%;
-            background-color: #666;
-            font-size: 12px;
-            cursor: pointer;
-            color: #333;
-            box-shadow: 3px 0 9px rgba(0, 0, 0, 0.2);
-        }
-
-        .think2 {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            line-height: 40px;
-            border-radius: 50%;
-            background-color: #666;
-            font-size: 12px;
-            cursor: pointer;
-            color: #333;
-            box-shadow: 3px 0 9px rgba(0, 0, 0, 0.2);
-        }
-
-        #yuanli1,
-        #yuanli2 {
-            display: none;
-            position: absolute;
-            top: -38px;
-            left: 0;
-            z-index: 999;
-            width: 700px;
-            height: 700px;
-            border-radius: 0;
-            opacity: 0.8;
-            border-radius: 30px;
-            /* transition: all 0.5s; */
-        }
-
-        #yuanli2 {
-            display: none;
-            width: 700px;
-            height: 400px;
-        }
-
-        .close-box {
-            display: none;
-            position: absolute;
-            z-index: 999;
-            right: -96px;
-            top: -33px;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            line-height: 40px;
-            text-align: center;
-            background-color: red;
-            box-shadow: 3px 0 9px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            opacity: 0.7;
-            color: #fff;
-        }
-
-        .jiantou {
-            display: none;
-            position: absolute;
-            top: 97%;
-            right: -41px;
-            width: 40px;
-            height: 40px;
-            z-index: 999;
-            border: 4px solid pink;
-            transform: rotate(45deg);
-            border-color: pink pink transparent transparent;
-            /* box-shadow: 3px 0 9px rgba(0, 0, 0, 0.2); */
-            cursor: pointer;
-        }
-
         @keyframes rotate1 {
             0% {
                 transform: rotate(0deg);
@@ -379,56 +294,98 @@
 
         .word {
             position: absolute;
-            display: none;
+            display: block;
             bottom: 159px;
             left: 147px;
-            width: 70px;
+            width: 100px;
             height: 20px;
+            margin-left: -100px;
             line-height: 20px;
-            font-size: 12px;
+            font-size: 20px;
             color: #ccc;
         }
+
+        .nav {
+            position: relative;
+            text-align: center;
+            width: 100%; /* 使用百分比，占据父容器的宽度 */
+            max-width: 600px; /* 设置最大宽度，以防止内容过宽 */
+            margin: 0 auto; /* 左右居中，auto 值会根据宽度自动调整 */
+        }
+
+        .nav li {
+            display: inline-block; /* 将 li 元素变成行内块级元素，实现左右并排 */
+            width: calc(50% - 20px); /* 计算宽度，减去一些间距 */
+            height: 100px;
+            list-style: none;
+            margin: 5px; /* 添加一些间距 */
+            box-sizing: border-box; /* 防止宽度溢出 */
+        }
+        /* 基本的链接样式 */
+        .nav a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            width: 80px;
+            color: #fff;
+            background-color: #60C3DC;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* 鼠标悬停时的样式 */
+        .nav a:hover {
+            background-color: #82B0E0;
+        }
+
+
     </style>
 </head>
 
 <body>
 <audio id="play1">
-    <source th:attr="src=${pathList[0]}" type="audio/mp3"/>
-</audio> -->
-<audio id="play4">
-    <source th:attr="src=${pathList[1]}" type="audio/mp3"/>
-</audio>
-<audio id="play5">
-    <source th:attr="src=${pathList[2]}" type="audio/mp3"/>
-</audio>
-<audio id="play3">
-    <source th:attr="src=${pathList[3]}" type="audio/mp3"/>
+    <source th:src="'data:audio/mpeg;base64,' + ${base64EncodedList[0]}"/>
 </audio>
 <audio id="play2">
-    <source th:attr="src=${pathList[4]}" type="audio/mp3"/>
+    <source th:src="'data:audio/mpeg;base64,' + ${base64EncodedList[1]}"/>
+</audio>
+<audio id="play3">
+    <source th:src="'data:audio/mpeg;base64,' + ${base64EncodedList[2]}"/>
+</audio>
+<audio id="play4">
+    <source th:src="'data:audio/mpeg;base64,' + ${base64EncodedList[3]}"/>
+</audio>
+<audio id="play5">
+    <source th:src="'data:audio/mpeg;base64,' + ${base64EncodedList[4]}"/>
 </audio>
 
 <div class="music">
+<!--    音乐封面-->
     <div class="img">
         <img src="images/00.jpg" alt="">
     </div>
+<!--    进度条-->
     <div class="load">
         <div class="line"></div>
     </div>
+<!--    音乐框-->
     <div class="circle">
         <ul>
+<!--            上一首按钮-->
             <li>
                 <div class="box1">
                     <div class="plays1"> </div>
                     <div class="click"></div>
                 </div>
             </li>
+<!--            暂停按钮-->
             <li>
                 <div class="box2">
                     <div class="plays2"> </div>
                     <div class="click2"></div>
                 </div>
             </li>
+<!--            下一首按钮-->
             <li>
                 <div class="box3">
                     <div class="plays3"> </div>
@@ -437,20 +394,22 @@
             </li>
         </ul>
     </div>
+<!--    音量调节-->
     <div class="volte">
         <div class="bar"></div>
         <div class="cir"></div>
     </div>
+<!--    显示音乐时间-->
     <div class="num-box">
         <span class="seconed">0</span>:<span class="first">00</span>
     </div>
-    <div class="think"></div>
-    <div class="think2"></div>
-    <img src="images/1.png" alt="" id="yuanli1">
-    <img src="images/think2.png" alt="" id="yuanli2">
-    <div class="close-box">X</div>
-    <div class="jiantou"></div>
-    <div class="word"><p>每天都开心</p></div>
+
+    <div class="word"><p id="musicTitle"></p></div>
+</div>
+<!--导航栏，1.获取新的歌曲，2.跳转到管理员登录-->
+<div class="nav">
+    <li><a href="/musicPlay">换歌单</a></li>
+    <li><a href="/jump/toAdminLogin">我是管理员</a></li>
 </div>
 <div class="bg">
     <div class="move-bear">
@@ -458,31 +417,42 @@
     </div>
 </div>
 
+
+<!--隐藏域，仅用于接收后台的数据-->
+<div>
+    <input type="hidden" id="titleList" th:value="${titleList}">
+    <input type="hidden" id="hello" th:value="${hello}">
+</div>
+
 <script>
+    // 读取音乐title列表
+    var titleList = JSON.parse(document.getElementById('titleList').value);
+
     var play1 = document.querySelector('#play1');
     var play2 = document.querySelector('#play2');
     var play3 = document.querySelector('#play3');
     var play4 = document.querySelector('#play4');
     var play5 = document.querySelector('#play5');
     var count = 0;
-    var button = document.querySelector('.circle').querySelectorAll('li');
+    var button = document.querySelector('.circle').querySelectorAll('li');  //上一首，暂停，下一首三个按钮
     var allmusic = [play1, play2, play3, play4, play5];
-    var line = document.querySelector('.line');
-    var load = document.querySelector('.load');
-    var first = document.querySelector('.first');
-    var seconed = document.querySelector('.seconed');
-    var img = document.querySelector('img');
-    var music = document.querySelector('.music');
-    var click2 = document.querySelector('.click2');
-    var word = document.querySelector('.word');
-    var think2s = document.querySelector('#yuanli2');
-    var think2 = document.querySelector('.think2');
+    var line = document.querySelector('.line');         //进度条内条（随着播放时间变宽）
+    var load = document.querySelector('.load');         //进度条外框
+    var first = document.querySelector('.first');       //音乐播放秒数
+    var seconed = document.querySelector('.seconed');   //音乐播放分钟数
+    var img = document.querySelector('img');            //中间的圆形音乐封面
+    var music = document.querySelector('.music');       //音乐播放的大框
+    var click2 = document.querySelector('.click2');     //暂停播放按钮
+    var word = document.querySelector('.word');         //图片左侧文字
+    var musicTitle = document.querySelector('#musicTitle'); //显示歌曲名称
     var index = 0;
     var length;
 
     button[1].addEventListener('click', function() {
         if (count == 0) {
             allmusic[index].play();
+            // word.value = titleList[index];
+            musicTitle.innerHTML = titleList[index];
             count++;
             clearInterval(timer);
             jindu();
@@ -523,17 +493,13 @@
     button[0].addEventListener('click', function() {
         count = 1;
         var i = cut.pre();
-        if (i == 1 || i == 2) {
-            word.style.display = 'block';
-        } else {
-            word.style.display = 'none';
-        }
         clearInterval(timer);
         jindu();
         for (let i = 0; i < allmusic.length; i++) {
             allmusic[i].load();
         }
         allmusic[i].play();
+        musicTitle.innerHTML = titleList[i];
         pic();
         rotate.end();
         rotate.star();
@@ -548,17 +514,13 @@
     function fn() {
         count = 1;
         var i = cut.next();
-        if (i == 1 || i == 2) {
-            word.style.display = 'block';
-        } else {
-            word.style.display = 'none';
-        }
         clearInterval(timer);
         jindu();
         for (let i = 0; i < allmusic.length; i++) {
             allmusic[i].load();
         }
         allmusic[i].play();
+        musicTitle.innerHTML = titleList[i];
         pic();
         rotate.end();
         rotate.star();
@@ -566,9 +528,9 @@
         click2.style.background = " url(images/index_z_9769688.png) -811px -643px no-repeat";
 
     };
+
     // 进度条
     var timer = null;
-
     function jindu() {
         var cur = allmusic[index].duration;
         // console.log(cur);
@@ -579,9 +541,9 @@
             line.style.width = parseFloat(length / cur) * 150 + 'px';
         }, 50);
     };
+
     // 数字进度显示和自动播放下一首
     var timers = null;
-
     function numdisplay() {
         timers = setInterval(function() {
             var sec = parseInt(length % 60);
@@ -596,6 +558,8 @@
 
         }, 1000);
     };
+
+
     // 图片切换
     function pic() {
         img.src = 'images/0' + index + '.jpg'
@@ -625,6 +589,7 @@
             clearInterval(timerss);
         }
     };
+
     // 点击进度条实现歌曲拖拽
     load.addEventListener('mousedown', function(e) {
         var x = (e.pageX - (this.offsetLeft + music.offsetLeft - 76));
@@ -632,6 +597,7 @@
         allmusic[index].currentTime = (x * allmusic[index].duration) / 150;
 
     });
+
     // 调节音量
     allmusic[index].volume = 0.5;
     var bar = document.querySelector('.bar');
@@ -663,41 +629,6 @@
         })
     })
 
-    // 原理显示
-    var yuanli = document.querySelector('#yuanli1');
-    var think = document.querySelector('.think');
-    var closebox = document.querySelector('.close-box');
-    var jiantou = document.querySelector('.jiantou');
-    think.addEventListener('click', function() {
-        yuanli.style.display = 'block';
-        closebox.style.display = 'block';
-        jiantou.style.display = 'block';
-    });
-    var jiantoui = 1;
-    jiantou.addEventListener('click', function() {
-        if (jiantoui == 1) {
-            jiantoui++;
-            jiantou.style.transform = 'rotate(-135deg)';
-            jiantou.style.left = '-41px';
-            yuanli.src = 'images/' + jiantoui + '.png'
-        } else {
-            jiantoui--;
-            jiantou.style.transform = 'rotate(45deg)';
-            jiantou.style.left = '';
-            jiantou.style.right = '-41px';
-            yuanli.src = 'images/' + jiantoui + '.png'
-        }
-    })
-    closebox.addEventListener('click', function() {
-        yuanli.style.display = 'none';
-        closebox.style.display = 'none';
-        jiantou.style.display = 'none';
-        think2s.style.display = 'none';
-    })
-    think2.addEventListener('click', function() {
-        think2s.style.display = 'block';
-        closebox.style.display = 'block';
-    })
 </script>
 </body>
 
